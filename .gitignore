@@ -1,0 +1,6 @@
+# Ignore LaTeX build files except for the source, as well as actual output files
+cv.*
+!cv.tex
+!cv.pdf
+# Ignore (scanned or digital) signature image file(s)
+signature.*

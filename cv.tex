@@ -1,0 +1,267 @@
+% Résumé in LaTeX
+%
+% Compile to PDF via either of:
+% - `xelatex cv.tex` on the command line
+% - setting the engine used in Texifier (macOS application) to a non-builtin one
+%   (as it seemingly cannot handle the fontawesome package for icons?)
+% - any LaTeX engine and setup that works for you :-)
+
+% TODO: optimize for a seamless export to HTML for the personal homepage using
+% pandoc?
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Personal data
+
+\newcommand*{\name}{Jane Doe}
+\newcommand*{\address}{100 Main St, 12345 Boston, MA}
+\newcommand*{\mobile}{+1 999 876-5432}
+\newcommand*{\emailaddr}{jane@doe.net}
+
+% Optional, comment out inapplicable links when using (below):
+\newcommand{\linkedin}{TODO}  % only the part after https://linkedin.com/in/
+\newcommand{\github}{TODO}  % only the part after https://github.com/ (user name)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Formatting & QOL rules/commands
+
+% Document layout and PDF export metadata
+\documentclass[a4paper,10pt]{article}
+\usepackage{titlesec}
+% Change margins as desired, also accepts unit "in" for margins declared in inches:
+\usepackage[top=1.0cm, bottom=1.5cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage[pdfauthor={\name}, pdftitle={Résumé}]{hyperref}
+
+% Lower/smaller-than-default line spacing
+\usepackage{setspace}
+% \setstretch{0.9}
+\setstretch{1.0}
+
+% Same for every bullet point list's style • 
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0em}
+
+\newcommand{\tablehspacing}{2.5cm}
+\newcommand{\vspacebeforesection}{-1em}
+\newcommand{\vspaceaftersection}{-1.5em}
+\newcommand{\vspaceitemize}{-0.5em}  % TODO: why are these needed again?
+\newcommand{\spacer}{1em}
+
+% font-awesome provides the icons for LinkedIn/GitHub links
+\usepackage{fontawesome5}
+
+% For the table-like indentation/style under additional info:
+\usepackage{array}
+
+% Times New Roman font:
+\usepackage{times}
+
+% Support for ß, ä, etc.
+\usepackage[T1]{fontenc}
+
+% For e.g. German-locale formatted date when using \today, adapt as needed:
+\usepackage[german]{babel}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{} 
+\titleformat{\subsection}[runin]{\bfseries}{}{0em}{}
+
+\newcommand{\positionentry}[4]{
+  \noindent
+  \textbf{#1 \hfill #2} \\
+  \textit{#3} \hfill #4 \\
+  \vspace{\vspaceaftersection}
+}
+% Usage example for work experience:
+% \positionentry{Company name}{City, country}{Position/job title}{mm/yyyy -- mm/yyyy (from-to)}
+
+% Command to output a clickable email adress
+\newcommand{\email}{\href{mailto:\emailaddr}{\emailaddr}{ }}
+
+\newcommand{\iconspacer}{\hspace{0.25em}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% CV layout & entries
+
+\begin{document}
+\pagestyle{empty}  % Removes page number "1"
+
+\begin{center}
+    {\huge \textbf{\name}} \\
+    \vspace{2mm}
+    \address \\
+    \email $\mid$ \mobile \\
+    % Comment a line out here if not applicable:
+    \href{https://www.linkedin.com/in/\linkedin}{\faLinkedin \iconspacer LinkedIn} \iconspacer\iconspacer
+    % \href{https://github.com/\github}{\faGithub \iconspacer GitHub} \\
+
+    % Optional personal homepage reference:
+    % \href{https://homepage.net/name/[portfolio,cv,…]}{homepage.net/name} \\
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{\vspacebeforesection}
+\section*{EDUCATION}
+\vspace{\vspaceaftersection}
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent
+\textbf{Technical University of Munich (TUM) \hfill Munich, Germany} \\
+\textit{B.Sc. in Management \& Technology -- current GPA: 1.2/5.0 (top 5\%)} \hfill Since 09/2017
+% Or, alternatively e.g.:
+% \textit{B.Sc. in Management \& Technology 6\textsuperscript{th} semester, English degree program} \hfill Since 09/2017
+\vspace{\vspaceitemize}
+\begin{itemize}
+    \item Specializing in Finance and Computer Science
+    \item Bullet 2
+\end{itemize}
+
+\noindent
+\textbf{Harvard Business School \hfill Boston, United States} \\
+\textit{Exchange Semester -- GPA: 4.0/4.0 (with 4.0 best grade)} \hfill 09/2018 -- 01/2019
+\vspace{\vspaceitemize}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+\end{itemize}
+
+\noindent
+\textbf{Gymnasium Musterhausen \hfill Munich, Germany} \\
+\textit{Abitur -- GPA: 1.5/6.0 (with 1.0 best grade)} \hfill  09/2008 -- 06/2016
+\vspace{\vspaceitemize}
+\begin{itemize}
+    \item Bullet 1  % Optionally use \item[] to remove the bullet point symbol if you ever only have a single item to list here
+    \item Bullet 2
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{\vspacebeforesection}
+\section*{PROFESSIONAL EXPERIENCE}
+\vspace{\vspaceaftersection}
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent
+\textbf{Some Bank AG \hfill Munich, Germany} \\
+\textit{Intern, Investment Banking} \hfill 06/2019 -- 09/2019 \\
+\vspace{\vspaceaftersection}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+    \item Bullet 3
+\end{itemize}
+
+\noindent
+\textbf{Some Consultancy AG \hfill Munich, Germany} \\
+\textit{Intern, Strategy Consulting} \hfill 06/2019 -- 09/2019 \\
+\vspace{\vspaceaftersection}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+    \item Bullet 3
+\end{itemize}
+
+% Every entry is easily commented-out, as well as back in:
+
+% \noindent
+% \textbf{Some old work at random company GmbH \hfill Munich, Germany} \\
+% \textit{Working Student, Business Development} \hfill 06/2019 -- 09/2019 \\
+% \vspace{\vspaceaftersection}
+% \begin{itemize}
+%     \item Bullet 1
+%     \item Bullet 2
+%     \item Bullet 3
+% \end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{\vspacebeforesection}
+\section*{EXTRACURRICULAR ACTIVITY}
+\vspace{\vspaceaftersection}
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent
+\textbf{Some music group in which you are playing an instrument \hfill Munich, Germany} \\
+\textit{Part of the XYZ Band} \hfill Since April 2018 \\ % - 
+\vspace{\vspaceaftersection}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+\end{itemize}
+
+\noindent
+\textbf{Some Football Club in which you were a coach \hfill Munich, Germany} \\
+\textit{Football Coach for 10-year-olds} \hfill 09/2018 -- 08/2019 \\ % - 
+\vspace{\vspaceaftersection}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+\end{itemize}
+
+\noindent
+\textbf{Technical University of Munich \hfill Munich, Germany} \\
+\textit{Buddy for freshmen at TUM School of Management} \hfill 09/2018 -- 08/2019 \\ % - 
+\vspace{\vspaceaftersection}
+\begin{itemize}
+    \item Bullet 1
+    \item Bullet 2
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\vspace{\vspacebeforesection}
+\section*{ADDITIONAL INFORMATION \& SKILLS}
+\vspace{\vspaceaftersection}
+\noindent\rule{\textwidth}{0.4pt}
+
+\setstretch{1.2} % TODO: keep?
+\noindent
+\begin{tabbing}
+    \hspace{3cm} \= \kill
+    \textbf{Languages:} \> German (native), English (full professional proficiency) \\
+    \textbf{Computer Skills:} \> Microsoft Office, Capital IQ, Bloomberg \\
+    \textbf{Interests:} \> Long distance running (participated in Berlin Marathon in 2020) \\
+\end{tabbing}
+
+
+\noindent
+
+PLACE, \today \quad S I G N A T U R E 
+
+% TODO: (optionally) Insert PNG of signature with transparent background like so
+% (instead of the above line):
+% PLACE, \today \quad
+% \raisebox{-0.25\height}{\includegraphics[height=1.5\baselineskip]{./signature.png}}
+
+
+\end{document}
